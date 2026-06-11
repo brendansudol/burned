@@ -1,0 +1,26 @@
+{
+  "name": "burned",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "predev": "node -e \"const f='data/corpus.json',fs=require('fs');fs.existsSync(f)||fs.writeFileSync(f,'{}')\"",
+    "dev": "next dev",
+    "prebuild": "node -e \"const f='data/corpus.json',fs=require('fs');fs.existsSync(f)||fs.writeFileSync(f,'{}')\"",
+    "build": "next build",
+    "start": "next start",
+    "corpus": "tsx scripts/build-corpus.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.71.0",
+    "next": "^15.5.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}

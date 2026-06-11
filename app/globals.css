@@ -1,0 +1,335 @@
+/* app/globals.css
+ *
+ * Token system
+ *   stage:  char #15100c · soot #241b14 · ash #a39684
+ *   card:   paper #f2e8d5 · ink #2b2118 · scorch #6e4a2a
+ *   heat:   ember #ff6b2c · flame #ffc04d
+ *
+ * Type roles
+ *   --font-display  Anton          headline, target name
+ *   --font-script   Courier Prime  the burn itself (cue-card script)
+ *   --font-ui       Archivo        labels, buttons, chrome
+ */
+
+:root {
+  --char: #15100c;
+  --soot: #241b14;
+  --soot-edge: #3a2d20;
+  --ash: #a39684;
+  --paper: #f2e8d5;
+  --ink: #2b2118;
+  --scorch: #6e4a2a;
+  --ember: #ff6b2c;
+  --flame: #ffc04d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--char);
+  color: var(--ash);
+  font-family: var(--font-ui), system-ui, sans-serif;
+  min-height: 100svh;
+}
+
+.stage {
+  max-width: 660px;
+  margin: 0 auto;
+  padding: 56px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+/* ── Masthead ──────────────────────────────────────────────────────────── */
+
+.masthead {
+  text-align: center;
+}
+
+.masthead h1 {
+  font-family: var(--font-display), "Arial Narrow", sans-serif;
+  font-weight: 400;
+  font-size: clamp(64px, 16vw, 112px);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  color: var(--paper);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.masthead h1 .spark {
+  color: var(--ember);
+}
+
+.masthead p {
+  margin: 10px 0 0;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+}
+
+/* ── Input row ─────────────────────────────────────────────────────────── */
+
+.ignition {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.ignition input {
+  flex: 1;
+  min-width: 0;
+  background: var(--soot);
+  border: 1px solid var(--soot-edge);
+  border-radius: 10px;
+  color: var(--paper);
+  font-family: var(--font-script), "Courier New", monospace;
+  font-size: 17px;
+  padding: 14px 16px;
+}
+
+.ignition input::placeholder {
+  color: color-mix(in srgb, var(--ash) 65%, transparent);
+}
+
+.ignition input:focus-visible,
+button:focus-visible,
+.chip:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 2px;
+}
+
+button {
+  font-family: var(--font-ui), system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 10px;
+  padding: 14px 20px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 80ms ease, background-color 120ms ease;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: var(--ember);
+  color: #1c0d04;
+  border-color: var(--ember);
+}
+
+.btn-primary:hover {
+  background: #ff7d45;
+}
+
+.btn-primary:disabled {
+  background: var(--soot-edge);
+  border-color: var(--soot-edge);
+  color: var(--ash);
+  cursor: wait;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ash);
+  border-color: var(--soot-edge);
+}
+
+.btn-ghost:hover {
+  color: var(--paper);
+  border-color: var(--ash);
+}
+
+/* ── Sample topic chips ────────────────────────────────────────────────── */
+
+.kindling {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.kindling span {
+  align-self: center;
+  letter-spacing: 0.04em;
+}
+
+.chip {
+  background: transparent;
+  border: 1px dashed var(--soot-edge);
+  color: var(--ash);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.chip:hover {
+  color: var(--flame);
+  border-color: var(--scorch);
+}
+
+/* ── The cue card (signature element) ──────────────────────────────────── */
+
+.cue-card {
+  position: relative;
+  width: 100%;
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: 6px;
+  padding: 26px 28px 30px;
+  transform: rotate(-0.4deg);
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.5),
+    0 18px 40px -18px rgba(0, 0, 0, 0.8);
+}
+
+/* scorched corners */
+.cue-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(130px 90px at 100% 0%, rgba(110, 74, 42, 0.32), transparent 70%),
+    radial-gradient(150px 100px at 0% 100%, rgba(110, 74, 42, 0.26), transparent 70%);
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--scorch);
+  margin: 0 0 6px;
+}
+
+.target {
+  font-family: var(--font-display), "Arial Narrow", sans-serif;
+  font-weight: 400;
+  font-size: clamp(26px, 6vw, 38px);
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  margin: 0 0 14px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 12px;
+  overflow-wrap: anywhere;
+}
+
+.script {
+  font-family: var(--font-script), "Courier New", monospace;
+  font-size: 16.5px;
+  line-height: 1.65;
+  margin: 0;
+  white-space: pre-wrap;
+  min-height: 1.65em;
+}
+
+/* the kicker line ignites */
+.kicker {
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--scorch), var(--ember) 45%, var(--flame) 80%, var(--ember));
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.kicker.lit {
+  animation: smolder 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes smolder {
+  from {
+    background-position: 0% 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+.caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--ink);
+  animation: blink 0.9s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ── After-actions / footer ────────────────────────────────────────────── */
+
+.after {
+  display: flex;
+  gap: 10px;
+}
+
+.colophon {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: color-mix(in srgb, var(--ash) 70%, transparent);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ── Small screens ─────────────────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  .ignition {
+    flex-direction: column;
+  }
+
+  .cue-card {
+    padding: 20px 18px 24px;
+  }
+}
+
+/* ── Reduced motion ────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .kicker.lit {
+    animation: none;
+  }
+
+  .caret {
+    animation: none;
+  }
+
+  button {
+    transition: none;
+  }
+}
