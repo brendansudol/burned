@@ -1,0 +1,8 @@
+node_modules
+.next
+.env
+.env*.local
+# Raw corpus source stays local; the parsed corpus.json IS uploaded
+# (it's gitignored, so CLI deploys need this override — git-based
+# deploys would build with an empty corpus and every burn would 500).
+data/corpus.txt
